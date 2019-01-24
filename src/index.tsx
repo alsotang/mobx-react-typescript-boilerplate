@@ -2,27 +2,15 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { observer, useObservable } from 'mobx-react-lite';
 
-const TimerView = observer((props) => {
-  const timer = useObservable({
-    value: 0,
-    reset() {
-      timer.value = 0
-    }
-  })
+import TodoView from './todo'
 
-  React.useEffect(() => {
-    setInterval(() => {
-      timer.value++;
-    }, 1000)
-  }, [])
 
+const App = observer((props) => {
   return (
     <div>
-      <button onClick={() => timer.reset()}>
-        Seconds passed: {timer.value}
-      </button>
+      <TodoView date="2019-01-25" />
     </div>
   )
 })
 
-ReactDOM.render(<TimerView />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
