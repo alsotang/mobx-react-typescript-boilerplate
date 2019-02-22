@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {AppStoreContext} from './store/app'
-import { observer, useObservable } from 'mobx-react-lite';
+import { useObserver, useObservable } from 'mobx-react-lite';
 
-const TodoView = observer((props: {date: string}) => {
+const TodoView = (props: {date: string}) => {
   const inputRef = React.useRef(null)
   const appStore = React.useContext(AppStoreContext)
-
+  console.log(`TodoView render`)
   const todoListModel = useObservable({
     todos: [
       {value: 'do sth 1', isDone: false},
@@ -32,7 +32,7 @@ const TodoView = observer((props: {date: string}) => {
     )
   })
 
-  return (
+  return useObserver(() =>
     <div>
       <p>username: {appStore.userStore.name}</p>
       <p>date: {props.date}</p>
@@ -48,6 +48,6 @@ const TodoView = observer((props: {date: string}) => {
       </div>
     </div>
   )
-})
+}
 
 export default TodoView
