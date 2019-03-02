@@ -1,13 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { useObserver, useObservable } from 'mobx-react-lite';
 
-import TodoView from './todo'
+import TodoView from './TodoView'
 
 
 const App = () => {
   console.log(`App render`)
-  return useObserver(() =>
+  return (
     <div>
       <TodoView date="2019-01-25" />
     </div>
